@@ -1,0 +1,50 @@
+<html>
+<head>
+ <title>みんなの名言集</title>
+ <style>
+   header {
+     display: flex;
+     justify-content: start;
+   }
+   header a {
+     margin: 0 10px;
+     text-decoration: none;
+     font-size: 18px;
+     font-weight: bold;
+     height: 40px;
+     line-height: 40px;
+   }
+   form {
+     margin: 0 10px;
+   }
+   button {
+     color: #551B8B;
+     border: none;
+     font-weight: bold;
+     font-size: 18px;
+     background-color: white;
+     outline: none;
+     line-height: 40px;
+     height: 40px;
+   }
+ </style>
+</head>
+<body>
+  <header>
+    <a href="/">to top</a>
+    <a href="/meigen">to list</a>
+    <% if session[:user_id] %>
+    <a href=<%= "/user/#{session[:user_id]}" %>>to mypage</a>
+    <form method="post" action="/user/logout">
+      <button>logout</button>
+    </form>
+    <% else %>
+      <a href="/user/login">login</a>
+      <a href="/user/signup">signup</a>
+    <% end %>
+  </header>
+  <%= yield %>
+  <footer>
+  </footer>
+</body>
+</html>

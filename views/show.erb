@@ -1,0 +1,84 @@
+<main>
+ <h1>Meigen details</h1>
+ <p>
+   <%= @meigen[:main] %>
+   <b>By</b><%= @meigen.user[:name] %>
+ </p>
+ <% if @meigen.user && @meigen.user.authenticate(session[:user_id]) %>
+  <form method="post" action=<%= "/meigen/#{ @meigen[:id]}/delete"%>>
+    <input type="submit" value="Delete">
+  </form>
+ <% end %>
+ <h3>like</h3>
+ <form method="post" action="/like/create">
+  <p>score:
+    <select name="score">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    pt
+  </p>
+  <input type="hidden" value=<%= @meigen.id %> name="meigen_id">
+  <p><input type="submit" value="Evaluate meigen"></p>
+  <% if @message %><p class="error-message"><%= @message %></p><% end %>
+ </form>
+ <div id="likes">
+  <% @likes.each do |like| %>
+    <p>
+      <b>username</b> <%= like.user[:name] %></a>
+      <b>score</b> <%= like[:score] %>pt
+    </p>
+    <% if like.user && like.user.authenticate(session[:user_id]) %>
+      <form method="post" action=<%= "/like/#{like[:id]}/delete"%>>
+        <input type="submit" value="Delete">
+      </form>
+    <% end %>
+  <% end %>
+  <p id="hideText" class="clickText">hide all likes</p>
+ </div>
+ <p id="openText" class="clickText">show all likes</p>
+</main>
+<script>
+let likes = document.getElementById("likes");
+let hideText = document.getElementById("hideText");
+let openText = document.getElementById("openText");
+
+let isHidden = true;
+const attachClass = (isHidden) => {
+  if (isHidden) {
+    openText.classList.remove("hidden")
+    likes.classList.add("hidden");
+  } else {
+    openText.classList.add("hidden")
+    likes.classList.remove("hidden");
+  }
+}
+attachClass(isHidden)
+
+hideText.addEventListener('click', () => {
+  isHidden = !isHidden
+  attachClass(isHidden)
+})
+
+openText.addEventListener('click', () => {
+  isHidden = !isHidden
+  attachClass(isHidden)
+})
+</script>
+<style>
+.error-message {
+ color: red; 
+ font-size: 14px;
+}
+.hidden {
+  display: none;
+}
+.clickText {
+  color: royalblue;
+  cursor: pointer;
+  text-ecolation: underline;
+}
+</style>

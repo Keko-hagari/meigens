@@ -1,0 +1,48 @@
+<main>
+  <div class="container">
+    <form method="post" action="/meigen/create">
+      <p><b>Body</b></p>
+      <p><input type="text" name="main"></p>
+      <p><input type="submit" value="Create"></p>
+      <% if @message %><p class="error-message"><%= @message %><p><% end %>
+    </form>
+    <div>
+      <h1>Meigen List</h1>
+      <% @meigenlist.each do |meigen|%>
+        <p>
+          <b>No.<%= meigen[:id] %></b> <a href= <%="/meigen/#{meigen[:id]}"%> ><%= meigen[:main] %></a>
+          <b>By</b><%= meigen.user[:name] %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</main>
+<style>
+.container {
+ display: flex;
+ justify-content: start;
+}
+.container div {
+ margin: 50px 30px;
+}
+.container form {
+ margin: 70px 30px;
+ width: 250px;
+}
+.container form input[type="submit"], input[type="text"] {
+ width: 100%;
+ height: 30px;
+}
+.check input[type="checkbox"] {
+ width: 20px;
+ height: 20px;
+}
+.check span {
+ height: 30px;
+ line-height: 30px;
+}
+.error-message {
+ color: red;
+ font-size: 14px;
+}
+</style>

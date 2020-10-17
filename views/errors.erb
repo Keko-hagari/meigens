@@ -1,0 +1,16 @@
+<main>
+ <% if @errors.present? %>
+ <p class="error-message"><%= @errors.full_messages.count %> errors occurred !!!!</p>
+ <ul>
+   <% @errors.full_messages.each do |message| %>
+       <li class="error-message"><%=message%></li>
+   <% end%>
+ </ul>
+ <% end %>
+</main>
+<style>
+.error-message {
+ color: red;
+ font-size: 14px;
+}
+</style>
