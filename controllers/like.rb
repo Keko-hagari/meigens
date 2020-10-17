@@ -4,11 +4,12 @@ require './models/like.rb'
 class LikeController < Base
   post '/create' do
     @meigen = Meigen.find(params[:meigen_id].to_i)
+    puts @meigen
     @likes = Like.where(meigen_id: @meigen.id)
     if session[:user_id] 
-      @like = Like.new({score: params[:score].to_i, user_id: session[:user_id], meigen_id: params[:meigen_id].to_i})
+      @like = Like.new({user_id: session[:user_id], meigen_id: params[:meigen_id].to_i})
       if @like.save
-        redirecr "/meigen/#{params[:meigen_id]}"
+        redirect "/meigen/#{params[:meigen_id]}"
       else
         erb :show
       end

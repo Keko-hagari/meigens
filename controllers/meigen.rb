@@ -8,6 +8,7 @@ class MeigenController < Base
  get '/:id' do
    @meigen = Meigen.find(params[:id]) 
    @likes = Like.where(meigen_id: @meigen.id)
+   @like = Like.find_by(meigen_id: @meigen.id,user_id: session[:user_id])
    erb :show
  end
  post '/create' do
