@@ -1,15 +1,15 @@
 <main>
- <h1>Meigen details</h1>
  <p>
    <%= @meigen[:main] %>
-   <b>By</b><%= @meigen.user[:name] %>
+   <%= @meigen.user[:name] %>
  </p>
+ <p><%= @meigen[:cartoon_title]%>
  <% if @meigen.user && @meigen.user.authenticate(session[:user_id]) %>
   <form method="post" action=<%= "/meigen/#{ @meigen[:id]}/delete"%>>
     <input type="submit" value="Delete">
   </form>
  <% end %>
- <h3>like: <%= @meigen.likes.count %></h3>
+ <h3>いいね数: <%= @meigen.likes.count %></h3>
  <% if @meigen.already_liked?(session[:user_id]) %>
  <form method="post" action=<%="/like/#{@like[:id]}/delete"%>>
   <button><img src="/img/colorheart.svg" class="like-btn"></button>
@@ -23,9 +23,10 @@
  </form>
  <% end %>
  <div id="likes">
+  <p>いいねした人</p>
   <% @likes.each do |like| %>
     <p>
-      <b>username</b> <%= like.user[:name] %></a>
+      <%= like.user[:name] %></a>
     </p>
   <% end %>
   <p id="hideText" class="clickText">hide all likes</p>

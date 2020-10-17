@@ -13,7 +13,7 @@ class MeigenController < Base
  end
  post '/create' do
   if session[:user_id]
-    @meigen = Meigen.new({:main => params[:main],:cartoon_id => 1,user_id: session[:user_id]})
+    @meigen = Meigen.new({:main => params[:main],:cartoon_title => params[:title],user_id: session[:user_id]})
     if @meigen.save
     redirect "/meigen/#{ @meigen[:id] }"
     else
