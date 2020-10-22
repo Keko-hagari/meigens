@@ -23,4 +23,8 @@ class LikeController < Base
     @like.delete
     redirect "/meigen/#{@like[:meigen_id]}"
   end
+  get '/' do
+    @meigens = Meigen.all.sort_by{|meigen| meigen.likes.count}.reverse
+    erb :ranking
+  end
 end

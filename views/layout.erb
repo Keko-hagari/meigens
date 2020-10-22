@@ -1,50 +1,69 @@
 <html>
 <head>
  <title>みんなの名言集</title>
- <style>
-   header {
-     display: flex;
-     justify-content: start;
-   }
-   header a {
-     margin: 0 10px;
-     text-decoration: none;
-     font-size: 18px;
-     font-weight: bold;
-     height: 40px;
-     line-height: 40px;
-   }
-   form {
-     margin: 0 10px;
-   }
-   button {
-     color: #551B8B;
-     border: none;
-     font-weight: bold;
-     font-size: 18px;
-     background-color: white;
-     outline: none;
-     line-height: 40px;
-     height: 40px;
-   }
- </style>
 </head>
 <body>
-  <header>
-    <a href="/">to top</a>
-    <a href="/meigen">to list</a>
+  <header class="wrapper">
+    <a href="/">トップ</a>
+    <a href="/meigen">一覧</a>
+    <a href="/like">ランキング</a>
     <% if session[:user_id] %>
-    <a href=<%= "/user/#{session[:user_id]}" %>>to mypage</a>
+    <a href=<%= "/user/#{session[:user_id]}" %>>マイページ</a>
     <form method="post" action="/user/logout">
-      <button>logout</button>
+      <button class="logout-btn">ログアウト</button>
     </form>
     <% else %>
-      <a href="/user/login">login</a>
-      <a href="/user/signup">signup</a>
+      <a href="/user/login">ログイン</a>
+      <a href="/user/signup">サインアップ</a>
     <% end %>
   </header>
   <%= yield %>
   <footer>
   </footer>
 </body>
+ <style>
+   * {
+     margin: 0;
+     padding: 0;
+   }
+   header {
+     display: flex;
+     justify-content: start;
+     background-color: black;
+     color: white;
+   }
+   header a {
+     color: white;
+     opacity: 0.8;
+     margin: 5px 15px;
+     text-decoration: none;
+     font-size: 18px;
+     font-weight: bold;
+     height: 40px;
+     line-height: 40px;
+   }
+   a:hover {
+    opacity: 1;
+   }
+   .wrapper {
+     width: 100%;
+   }
+   form {
+     margin: 5px 15px;
+   }
+   .logout-btn {
+     color: white;
+     opacity: 0.8;
+     border: none;
+     font-weight: bold;
+     font-size: 18px;
+     background-color: black;
+     outline: none;
+     line-height: 40px;
+     height: 40px;
+   }
+   button:hover {
+     opacity: 1;
+   }
+ </style>
 </html>
