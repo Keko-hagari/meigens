@@ -1,9 +1,19 @@
 <main>
 <div class="user-container">
-  <p class="user-item">ID: <%= @user.id %></p>
   <p class="user-item">名前: <%= @user.name %></p>
   <p class="user-item">メールアドレス: <%= @user.email %></p>
-  <p class="user-item">パスワード: <%= @user.password %></p>
+</div>
+<div>
+  <form method="post" action=<%= "/user/#{@user.id}/update" %>>
+    <p><b>アカウント更新</b></p>
+    <p>名前</p>
+    <p><input type= "text" name="name" value=<%= @user.name %>></p>
+    <p>メールアドレス</p>
+    <p><input type= "email" name="email" value=<%= @user.email %>></p>
+    <p>パスワード</p>
+    <p><input type= "password" name="password" value=<%= @user.password %>></p>
+    <p><input type= "submit" value="更新"></p>
+  </form>
 </div>
 </main>
 <style>

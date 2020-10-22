@@ -19,6 +19,18 @@ class UserController < Base
       end
     end
   end
+  post '/:id/update' do
+    @user = User.find(params[:id])
+    @user.update({name: params[:name], email: params[:email], password: params[:password]})
+    if @user.save
+      redirect "/user/#{@user.id}"
+    else
+      if @user.errors.present?
+        @errors = @user.errors
+        erb :errors
+      end
+    end
+  end
   post '/auth' do
     @user = User.find_by(name: params[:name], email: params[:email], password: params[:password])
     if @user.nil?
