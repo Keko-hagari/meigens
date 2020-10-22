@@ -1,0 +1,54 @@
+<main>
+<div class="table-container">
+  <table>
+    <tr>
+      <th class="meigen">名言</th>
+      <th class="title">作品名</th>
+      <th class="like">いいね数</th>
+    </tr>
+    <% @meigens.each do |meigen| %>
+    <tr>
+      <td>
+        <a href= <%="/meigen/#{meigen[:id]}"%>><%= meigen[:main] %>
+      </td>
+      <td>
+        <%= meigen[:cartoon_title]%></a>
+      </td>
+      <td>
+        <%= meigen.likes.count%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+</main>
+<style>
+a {
+  text-decoration: none;
+}
+
+table th {
+  font-size: 20px;
+}
+
+table td {
+  font-size: 18px;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+
+table th,table td{
+  text-align: center;
+  width: 25%;
+  padding: 15px 0;
+}
+</style>

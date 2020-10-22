@@ -1,9 +1,7 @@
 <main>
- <p>
-   <%= @meigen[:main] %>
-   <%= @meigen.user[:name] %>
- </p>
- <p><%= @meigen[:cartoon_title]%>
+ <h1><%= @meigen[:main] %></h1>
+ <h2><%= @meigen[:cartoon_title]%></h2>
+ <h3><%= @meigen.user[:name] %></h3>
  <% if @meigen.user && @meigen.user.authenticate(session[:user_id]) %>
   <form method="post" action=<%= "/meigen/#{ @meigen[:id]}/delete"%>>
     <input type="submit" value="Delete">
@@ -11,14 +9,14 @@
  <% end %>
  <h3>いいね数: <%= @meigen.likes.count %></h3>
  <% if @meigen.already_liked?(session[:user_id]) %>
- <form method="post" action=<%="/like/#{@like[:id]}/delete"%>>
-  <button><img src="/img/colorheart.svg" class="like-btn"></button>
+ <form class="like-cont" method="post" action=<%="/like/#{@like[:id]}/delete"%>>
+  <button class="favo-btn"><img src="/img/colorheart.svg" class="like-btn"></button>
   <% if @message %><p class="error-message"><%= @message %></p><% end %>
  </form>
  <% else %>
- <form method="post" action="/like/create">
+ <form class="like-cont" method="post" action="/like/create">
   <input type="hidden" value=<%= @meigen[:id] %> name="meigen_id">
-  <button><img src="/img/monoheart.svg" class="like-btn"></button>
+  <button class="favo-btn"><img src="/img/monoheart.svg" class="like-btn"></button>
   <% if @message %><p class="error-message"><%= @message %></p><% end %>
  </form>
  <% end %>
@@ -29,9 +27,9 @@
       <%= like.user[:name] %></a>
     </p>
   <% end %>
-  <p id="hideText" class="clickText">hide all likes</p>
+  <p id="hideText" class="clickText">閉じる</p>
  </div>
- <p id="openText" class="clickText">show all likes</p>
+ <p id="openText" class="clickText">いいねした人を表示</p>
 </main>
 <script>
 let likes = document.getElementById("likes");
@@ -75,5 +73,31 @@ openText.addEventListener('click', () => {
 }
 .like-btn {
   height: 30px;
+}
+.favo-btn {
+  border: none;
+  background-color: inherit;
+  outline: none;
+}
+h1 {
+  text-align: center;
+  margin: 100px 0 20px 0;
+}
+h2 {
+  text-align: center;
+  margin: 50px 0 20px 0;
+}
+h3 {
+  text-align: center;
+  margin: 25px 0 20px 0;
+}
+.like-cont {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+#openText, #likes {
+  text-align: center;
 }
 </style>

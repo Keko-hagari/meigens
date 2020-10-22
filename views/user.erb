@@ -1,6 +1,18 @@
 <main>
- <p><%= @user.id %></p>
- <p><%= @user.name %></p>
- <p><%= @user.email %></p>
- <p><%= @user.password %></p>
+<div class="user-container">
+  <p class="user-item">ID: <%= @user.id %></p>
+  <p class="user-item">名前: <%= @user.name %></p>
+  <p class="user-item">メールアドレス: <%= @user.email %></p>
+  <p class="user-item">パスワード: <%= @user.password %></p>
+</div>
 </main>
+<style>
+  .user-container {
+    margin-top: 200px;
+  }
+  .user-item {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+  }
+</style>
