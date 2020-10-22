@@ -16,6 +16,10 @@
       <a href="/user/login">ログイン</a>
       <a href="/user/signup">サインアップ</a>
     <% end %>
+    <form method="get" action="/search">
+      <input type="text" name="search">
+      <input type="submit" value="検索">
+    </form>
   </header>
   <%= yield %>
   <footer>

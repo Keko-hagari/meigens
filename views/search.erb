@@ -1,0 +1,24 @@
+<main> 
+  <div>
+    <table>
+    <tr>
+      <th>名言</th>
+      <th>タイトル</th>
+      <th>投稿者</th>
+    </tr>
+    <% @meigens.each do |meigen|%>
+    <tr>
+      <td>
+        <a href= <%="/meigen/#{meigen[:id]}"%> ><%= meigen[:main] %></a>
+      </td>
+      <td>
+        <%= meigen[:cartoon_title]%>
+      </td>
+      <td>
+        <%= meigen.user[:name] %>
+      </td>
+    </tr>
+    <% end %>
+    </table>
+  </div>
+</main>
